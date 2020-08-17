@@ -42,7 +42,31 @@ const data = [
         price:'100.000'
     },
     {
-        id:"6",
+        id:"cc",
+        image:"https://salt.tikicdn.com/cache/280x280/ts/product/24/cc/7f/49a8772b42f32f3bfb737d470f87b0ab.jpg",
+        title:"sách 2",
+        price:'100.000'
+    },
+    {
+        id:"tt",
+        image:"https://salt.tikicdn.com/cache/280x280/ts/product/d2/4e/47/fb05b03005d05fb7bda243ec2974e4af.jpg",
+        title:"sách 1",
+        price:'100.000'
+    },
+    {
+        id:"33",
+        image:"https://salt.tikicdn.com/cache/280x280/ts/product/24/cc/7f/49a8772b42f32f3bfb737d470f87b0ab.jpg",
+        title:"sách 2",
+        price:'100.000'
+    },
+    {
+        id:"22",
+        image:"https://salt.tikicdn.com/cache/280x280/ts/product/d2/4e/47/fb05b03005d05fb7bda243ec2974e4af.jpg",
+        title:"sách 1",
+        price:'100.000'
+    },
+    {
+        id:"11",
         image:"https://salt.tikicdn.com/cache/280x280/ts/product/24/cc/7f/49a8772b42f32f3bfb737d470f87b0ab.jpg",
         title:"sách 2",
         price:'100.000'
@@ -81,7 +105,7 @@ const ListData = (props) =>{
                                             totalWidth={100} 
                                             type='up-down' 
                                             minValue={1}
-
+                                            onChange={()=>{}}
                                             containerStyle={{
                                                 borderWidth:0
                                             }}
@@ -128,7 +152,7 @@ export default function CartPage({navigation}) {
                         <Text style={{fontWeight:"bold",color:"red"}}>100.000</Text>
                     </View>
                     <View style={styles.rightCheckout}>
-                        <TouchableNativeFeedback onPress={()=>navigation.push("CheckoutPage")}>
+                        <TouchableNativeFeedback onPress={()=>navigation.navigate("CheckoutPage",{data:data})}>
                             <View style={{width:"100%"}}>
                                 <Text style={{color:"white"}}>THANH TOÁN</Text>
                             </View>

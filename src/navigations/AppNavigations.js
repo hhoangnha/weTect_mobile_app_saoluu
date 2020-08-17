@@ -9,6 +9,8 @@ import CartPage from '../screens/Cart/Page/CartPage'
 import CheckoutPage from '../screens/Cart/Page/CheckoutPage'
 import SettingUserPage from '../screens/User/Page/SettingUserPage'
 import CartStatusPage from '../screens/User/CartStatusScreen'
+
+import CheckoutLoaderPage from '../screens/Load/CheckoutLoaderPage'
 export default class AppNavigations extends Component {
     render() {
         const Stack = createStackNavigator()
@@ -23,6 +25,10 @@ export default class AppNavigations extends Component {
                     <Stack.Screen name="CheckoutPage" component={CheckoutPage} />
                     <Stack.Screen name="SettingUserPage" component={SettingUserPage} />
                     <Stack.Screen name="CartStatusPage" component={CartStatusPage} />
+
+
+                    {/* Loading page */}
+                    <Stack.Screen name="CheckoutLoaderPage" component={CheckoutLoaderPage} />
                 </Stack.Navigator>
             </NavigationContainer>
         )

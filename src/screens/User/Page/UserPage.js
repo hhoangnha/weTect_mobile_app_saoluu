@@ -26,7 +26,7 @@ import {
 export default function UserPage({ navigation }){
     return (
         <View style={styles.container}>
-            <TouchableNativeFeedback onPress={()=>alert("no")}>
+            <TouchableNativeFeedback onPress={()=>navigation.navigate("SettingUserPage")}>
                 <View style={styles.boxUser} >
                     <ImageBackground  
                         style={styles.boxLeftUser} 
@@ -57,29 +57,29 @@ export default function UserPage({ navigation }){
                         <TouchableNativeFeedback>
                             <View style={styles.itemOrder}>
                                 <Badge style={styles.countItemOrder}>ok</Badge>
-                                <MaterialIcons name="content-paste" size={24} color="#979797" />
-                                <Text style={{fontSize:10,color:"#979797"}}>Chờ xác nhận</Text>
+                                <MaterialIcons name="content-paste" size={24} color="#7F7979" />
+                                <Text style={{fontSize:10,color:"#7F7979"}}>Chờ xác nhận</Text>
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback>
                             <View style={styles.itemOrder}>
                                 <Badge style={styles.countItemOrder}>ok</Badge>
                                 <AntDesign name="inbox" size={25} color="#979797" />
-                                <Text style={{fontSize:10,color:"#979797"}}>Đang đóng gói</Text>
+                                <Text style={{fontSize:10,color:"#7F7979"}}>Đang đóng gói</Text>
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback>
                             <View style={styles.itemOrder}>
                                 <Badge style={styles.countItemOrder}>ok</Badge>
-                                <MaterialIcons name="local-shipping" size={25} color="#979797" />
-                                <Text style={{fontSize:10,color:"#979797"}}>Đang giao</Text>
+                                <MaterialIcons name="local-shipping" size={25} color="#7F7979" />
+                                <Text style={{fontSize:10,color:"#7F7979"}}>Đang giao</Text>
                             </View>
                         </TouchableNativeFeedback>
                         <TouchableNativeFeedback>
                             <View style={styles.itemOrder}>
                                 <Badge style={styles.countItemOrder}>ok</Badge>
-                                <MaterialCommunityIcons name="clipboard-check-outline" size={25} color="#979797" />
-                                <Text style={{fontSize:10,color:"#979797"}}>Đã giao</Text>
+                                <MaterialCommunityIcons name="clipboard-check-outline" size={25} color="#7F7979" />
+                                <Text style={{fontSize:10,color:"#7F7979"}}>Đã giao</Text>
                             </View>
                         </TouchableNativeFeedback>
                     </View>
@@ -197,11 +197,11 @@ const styles = StyleSheet.create({
         backgroundColor:"#1ABC9C",
         flexDirection:"row",
         alignItems:"center",
-        padding:20,
+        padding:10,
     },
     boxLeftUser:{
-        width:60,
-        height:60,
+        width:40,
+        height:40,
         justifyContent:"center",
         alignItems:"center",
         backgroundColor:"white",

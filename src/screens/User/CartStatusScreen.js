@@ -10,17 +10,10 @@ import DeliveredPage from './Page/DeliveredPage'
 
 const Tab = createMaterialTopTabNavigator();
 
-s2 = ()=>{
-    return(
-        <View>
-            <Text>s2</Text>
-        </View>
-    )
-}
 export default function CartStatusPage({navigation}) {
     return (
         <View style={styles.container}>   
-            <TouchableNativeFeedback onPress={()=>navigation.goBack()}>
+            <TouchableNativeFeedback onPress={()=>navigation.replace('HomeScreen')}>
                 <View style={styles.header}>
                     <View style={styles.iconBack}>
                         <Ionicons name="ios-arrow-back" size={24} color="black" />

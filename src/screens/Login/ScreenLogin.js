@@ -36,7 +36,6 @@ export default function ScreenLogin({ navigation }){
                             setModal(false);
                             setErrorMsg("");
                         }} style={style.btnok}>
-                                <Text style={style.titleLogin}>Đã rõ</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
