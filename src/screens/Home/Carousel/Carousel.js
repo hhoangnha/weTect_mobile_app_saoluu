@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
   },
   item: {
     width: screenWidth -60,
-    height: screenWidth -300,
+    height: screenWidth -250,
   },
   imageContainer: {
     flex: 1,
     marginBottom: Platform.select({ios: 0, android: 1}), // Prevent a random Android rendering issue
     borderRadius: 5,
-    backgroundColor:"red",
+    backgroundColor:"transparent",
   },
   image: {
     ...StyleSheet.absoluteFillObject,
