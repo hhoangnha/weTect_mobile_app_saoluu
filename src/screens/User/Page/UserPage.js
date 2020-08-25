@@ -5,7 +5,8 @@ import {
     StyleSheet, 
     ImageBackground,
     ScrollView,
-    Button
+    Button,
+    Image
 } from 'react-native'
 import { 
     Badge,
@@ -16,7 +17,10 @@ import {
     FontAwesome,
     MaterialCommunityIcons,
     AntDesign,
-    MaterialIcons
+    MaterialIcons,
+    Foundation,
+    FontAwesome5,
+    Ionicons
  } from '@expo/vector-icons';
 import { 
     TouchableNativeFeedback
@@ -26,163 +30,158 @@ import {
 export default function UserPage({ navigation }){
     return (
         <View style={styles.container}>
-            <TouchableNativeFeedback onPress={()=>navigation.navigate("SettingUserPage")}>
-                <View style={styles.boxUser} >
-                    <ImageBackground  
-                        style={styles.boxLeftUser} 
-                        source={{uri:"https://cdn0.iconfinder.com/data/icons/set-ui-app-android/32/8-512.png"}}
-                        resizeMode="contain">
-                        
-                    </ImageBackground>
-                    <View style={styles.boxCenterUser}>
-                        <Text style={{fontWeight:"bold", fontSize:17,color:"white"}}>Nguyễn ăn a</Text>
-                        <Text style={{fontStyle:"italic",color:"white"}}>Xem thông tin tài khoản</Text>
-                    </View>
-                    {/* <View style={styles.boxRightUser}>
-                        <Text><Icon name="chevron-right" size={20} /></Text>
-                    </View> */}
-                </View>
-            </TouchableNativeFeedback>
+            <View style={styles.header}>
+                <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>tài khoản</Text>
+            </View>
             <ScrollView showsVerticalScrollIndicator={false}>
-
-                <View style={styles.boxOrder}>
-                    <View style={{width:"60%"}}></View>
-                    <TouchableNativeFeedback onPress={()=>navigation.navigate("CartStatusPage")} >
-                        <View style={{flexDirection:"row",padding:"3%",width:"100%",}}>
-                            <Text>Đơn hàng của bạn</Text>
-                            <MaterialIcons name="navigate-next" size={20} />
+                <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+                    <TouchableNativeFeedback onPress={()=>navigation.navigate("SettingUserPage")}>
+                        <View style={styles.boxUser} >
+                            <View style={[styles.boxCenterUser], {justifyContent:"center", alignItems:"center"}}>
+                                <Image  
+                                    style={styles.boxLeftUser} 
+                                    source={{uri:"https://images.pexels.com/photos/1819483/pexels-photo-1819483.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"}}
+                                    >
+                                    
+                                </Image>
+                                <View style={{justifyContent:"center", alignItems:"center"}}>
+                                    <Text style={{paddingTop:20, fontSize:25, color:"white"}}>ABCD</Text>
+                                </View>
+                            </View >
+                            
                         </View>
                     </TouchableNativeFeedback>
-                    <View style={styles.boxStatusOrder}>
-                        <TouchableNativeFeedback>
-                            <View style={styles.itemOrder}>
-                                <Badge style={styles.countItemOrder}>ok</Badge>
-                                <MaterialIcons name="content-paste" size={24} color="#7F7979" />
-                                <Text style={{fontSize:10,color:"#7F7979"}}>Chờ xác nhận</Text>
+                </View>
+                
+                <TouchableNativeFeedback onPress={()=>alert("ok")}>
+                    <View style={{alignItems:"center",padding:"5%"}}>
+                        <View style={{width:"95%", justifyContent:"center", alignItems:"center"}}>
+                            <View style={{flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+                                <View style={{width:"25%", alignItems:"center", justifyContent:"center"}}>
+                                    <Foundation name="checkbox" size={30} color="#EFEFEF" />
+                                    <Text style={{color:"#EFEFEF"}}>Đã đặt</Text>
+                                </View>
+                                <View style={{width:"25%", alignItems:"center"}}>
+                                    <AntDesign name="inbox" size={30} color="#EFEFEF" />
+                                    <Text style={{color:"#EFEFEF"}}>Đóng gói</Text>
+                                </View>
+                                <View style={{width:"25%", alignItems:"center"}}>
+                                    <MaterialIcons name="directions-car" size={30} color="#EFEFEF" />
+                                    <Text style={{color:"#EFEFEF"}}>Đang giao </Text>
+                                </View>
+                                <View style={{width:"25%", alignItems:"center"}}>
+                                    <MaterialCommunityIcons name="emoticon-outline" size={30} color="#EFEFEF" />
+                                    <Text style={{color:"#EFEFEF"}}>Hoàn tất</Text>
+                                </View>
                             </View>
-                        </TouchableNativeFeedback>
-                        <TouchableNativeFeedback>
-                            <View style={styles.itemOrder}>
-                                <Badge style={styles.countItemOrder}>ok</Badge>
-                                <AntDesign name="inbox" size={25} color="#979797" />
-                                <Text style={{fontSize:10,color:"#7F7979"}}>Đang đóng gói</Text>
-                            </View>
-                        </TouchableNativeFeedback>
-                        <TouchableNativeFeedback>
-                            <View style={styles.itemOrder}>
-                                <Badge style={styles.countItemOrder}>ok</Badge>
-                                <MaterialIcons name="local-shipping" size={25} color="#7F7979" />
-                                <Text style={{fontSize:10,color:"#7F7979"}}>Đang giao</Text>
-                            </View>
-                        </TouchableNativeFeedback>
-                        <TouchableNativeFeedback>
-                            <View style={styles.itemOrder}>
-                                <Badge style={styles.countItemOrder}>ok</Badge>
-                                <MaterialCommunityIcons name="clipboard-check-outline" size={25} color="#7F7979" />
-                                <Text style={{fontSize:10,color:"#7F7979"}}>Đã giao</Text>
-                            </View>
-                        </TouchableNativeFeedback>
+                        </View>
                     </View>
+                </TouchableNativeFeedback>
+                <View style={{flex:1,
+                    alignItems:"center",
+                    marginTop:"10%",
+                    position:"relative",
+                    zIndex:99,
                     
-                </View>
-
-                <View style={styles.boxSetting}>
-                    <TouchableNativeFeedback onPress={()=>alert("ok")}>
-                        <View style={styles.settingItem}>
-                            <View style={{width:"90%", flexDirection:"row"}}>
-                                <Entypo name="shop" size={25} color="#C42222" />
-                                <Text style={{paddingLeft:"10%", fontSize:15, color:"#CA2121"}}>Đăng ký bán hàng</Text>
-                            </View>
-                            <View style={{width:"10%"}}>
-                                <Badge>New</Badge>
-                            </View>
-                        </View>
-                    </TouchableNativeFeedback>
-                    <TouchableNativeFeedback onPress={()=>alert("ok")}>
-                        <View style={styles.settingItem}>
-                            <View style={{width:"90%", flexDirection:"row"}}>
-                                <Feather name="heart" size={24} color="#FF3B00" />
-                                <Text style={{paddingLeft:"10%", fontSize:15, }}>Danh sách yêu thích</Text>
-                            </View>
-                            <View style={{width:"10%"}}>
-                                {/* <Badge>New</Badge> */}
-                            </View>
-                        </View>
-                    </TouchableNativeFeedback>
-                    <TouchableNativeFeedback onPress={()=>alert("ok")}>
-                        <View style={styles.settingItem}>
-                            <View style={{width:"90%", flexDirection:"row"}}>
-                                <MaterialCommunityIcons name="bell-outline" size={25} color="#598EFD" />
-                                <Text style={{paddingLeft:"10%", fontSize:15, }}>Thông báo của tôi</Text>
-                            </View>
-                            <View style={{width:"10%"}}>
-                                {/* <Badge>New</Badge> */}
-                            </View>
-                        </View>
-                    </TouchableNativeFeedback>
-                    <TouchableNativeFeedback onPress={()=>alert("ok")}>
-                        <View style={styles.settingItem}>
-                            <View style={{width:"90%", flexDirection:"row"}}>
-                            <FontAwesome name="star-half-full" size={25} color="#E9BA05" />
-                                <Text style={{paddingLeft:"10%", fontSize:15, }}>Đánh giá của tôi</Text>
-                            </View>
-                            <View style={{width:"10%"}}>
-                                {/* <Badge>New</Badge> */}
-                            </View>
-                        </View>
-                    </TouchableNativeFeedback>
-                    
-                    <TouchableNativeFeedback onPress={()=>alert("ok")}>
-                        <View style={styles.settingItem}>
-                            <View style={{width:"90%", flexDirection:"row"}}>
-                                <MaterialCommunityIcons name="ticket" size={24} color="#46983D" />
-                                <Text style={{paddingLeft:"10%", fontSize:15, }}>Voucher của tôi</Text>
-                            </View>
-                            <View style={{width:"10%"}}>
-                                {/* <Badge>New</Badge> */}
-                            </View>
-                        </View>
-                    </TouchableNativeFeedback>
-                    <TouchableNativeFeedback onPress={()=>alert("ok")}>
-                        <View style={styles.settingItem}>
-                            <View style={{width:"90%", flexDirection:"row"}}>
-                                <FontAwesome name="life-ring" size={23} color="#1478E0" />
-                                <Text style={{paddingLeft:"10%", fontSize:15, }}>Hỗ trợ</Text>
-                            </View>
-                            <View style={{width:"10%"}}>
-                                {/* <Badge>New</Badge> */}
-                            </View>
-                        </View>
-                    </TouchableNativeFeedback>
-                </View>
-
-                <View style={styles.boxSetting}>
-                    <TouchableNativeFeedback onPress={()=>{
-                        navigation.navigate('SettingUserPage');
                     }}>
-                        <View style={styles.settingItem}>
-                            <View style={{width:"90%", flexDirection:"row"}}>
-                                <MaterialCommunityIcons name="account-edit" size={25} color="#038CA3" />
-                                <Text style={{paddingLeft:"10%", fontSize:15}}>Cài đặt tài khoản</Text>
-                            </View>
-                            <View style={{width:"10%"}}>
-                                {/* <Badge>New</Badge> */}
-                            </View>
+                    <View style={{width:"95%", backgroundColor:"white",justifyContent:"center", alignItems:"center", padding:20, flexDirection:"row"}}>
+                        <View style={{width:"30%", alignItems:"center"}}>
+                            <Entypo name="heart-outlined" size={24} color="#FF059E" />
+                            <Text style={{color:"#FF059E"}}>Yêu thích</Text>
                         </View>
-                    </TouchableNativeFeedback>
-                   
-                    <View style={styles.settingItem}>
-                        <View style={{width:"100%", flexDirection:"row",alignItems:"center",justifyContent:"center"}}>
-                            <TouchableNativeFeedback onPress={()=>alert("Đăng xuất")}>
-                                <View style={{width:"100%", backgroundColor:"#FF6B01",marginBottom:"5%"}}>
-                                    <Text style={{color:"white",padding:"5%",paddingLeft:"40%",paddingRight:"40%"}}>Đăng xuất</Text>
+                        <View style={{width:"30%", alignItems:"center"}}>
+                            <Foundation name="ticket" size={24} color="#0B8F3F" />
+                            <Text style={{color:"#0B8F3F"}}>Voucher</Text>
+                        </View>
+                        <View style={{width:"30%", alignItems:"center"}}>
+                            <AntDesign name="gift" size={24} color="#E65B18" />
+                            <Text style={{color:"#E65B18"}}>Quà tặng</Text>
+                        </View>
+                        
+                    </View>
+                    <View style={{
+                        width:"95%", 
+                        backgroundColor:"white",
+                        justifyContent:"center", 
+                        alignItems:"center", 
+                        padding:20, 
+                        flexDirection:"row",
+                        borderBottomWidth:5,
+                        borderBottomColor:"#E8E9E9"}}>
+                        <View style={{width:"30%", alignItems:"center"}}>
+                            <Foundation name="burst-sale" size={24} color="#E11F02" />
+                            <Text style={{color:"#E11F02"}}>Khuyến mãi</Text>
+                        </View>
+                        <View style={{width:"30%", alignItems:"center"}}>
+                            <Entypo name="notification" size={24} color="#026FE1" />
+                            <Text style={{color:"#026FE1"}}>Thông báo</Text>
+                        </View>
+                        
+                        <View style={{width:"30%", alignItems:"center"}}>
+                            <Entypo name="dots-three-horizontal" size={24} color="black" />
+                            <Text>Thêm</Text>
+                        </View>    
+                    </View>
+                </View>
+                
+                <View style={{
+                    backgroundColor:"#E8E9E9", 
+                    position:"relative",
+                    zIndex:1, 
+                    top:"-10%",
+                    justifyContent:"center",
+                    alignItems:"center"}}>
+                    <View style={{backgroundColor:"white", width:"95%"}}>
+                        <View style={styles.boxSetting}>
+                            <TouchableNativeFeedback onPress={()=>alert("ban hang")}>
+                            <View style={styles.settingItem}>
+                                <View style={{width:"80%", flexDirection:"row"}}>
+                                    <MaterialCommunityIcons name="registered-trademark" size={24} color="red" />
+                                    <Text style={{paddingLeft:"10%", fontSize:15, color:"red", fontWeight:"bold"}}>Đăng ký bán hàng</Text>
+                                </View>
+                                <View style={{width:"20%"}}>
+                                    <Badge>Mới</Badge>
+                                    {/* <AntDesign name="edit" size={20} color="black" /> */}
+                                </View>
+                            </View>
+                            </TouchableNativeFeedback>
+                            <TouchableNativeFeedback onPress={()=>alert("chinh sach")}>
+                                <View style={styles.settingItem}>
+                                    <View style={{width:"70%", flexDirection:"row"}}>
+                                        <Entypo name="book" size={24} color="#FF2E1C" />
+                                        <Text style={{paddingLeft:"10%", fontSize:15}}>Chính sách mua hàng</Text>
+                                    </View>
                                 </View>
                             </TouchableNativeFeedback>
+                            <TouchableNativeFeedback onPress={()=>alert("gioi thieu")}>
+                                <View style={styles.settingItem}>
+                                    <View style={{width:"70%", flexDirection:"row"}}>
+                                        <Feather name="info" size={24} color="#09A733" />
+                                        <Text style={{paddingLeft:"10%", fontSize:15}}>Giới thiệu weTech</Text>
+                                    </View>
+                                </View>
+                            </TouchableNativeFeedback>
+                            <TouchableNativeFeedback onPress={()=>alert("Ho tro")}>
+                                <View style={styles.settingItem}>
+                                    <View style={{width:"70%", flexDirection:"row"}}>
+                                        <Ionicons name="ios-help-buoy" size={24} color="#1C3AFF" />
+                                        <Text style={{paddingLeft:"10%", fontSize:15}}>Trung tâm hỗ trợ</Text>
+                                    </View>
+                                </View>
+                            </TouchableNativeFeedback>
+                            
                         </View>
                     </View>
-                    
                 </View>
+                <TouchableNativeFeedback onPress={()=>alert("ok")}>
+                <View style={{width:"100%", justifyContent:"center", alignItems:"center"}}>
+                    <View style={{width:"95%", backgroundColor:"#FA710E", justifyContent:"center", alignItems:"center"}}>
+                        <Text style={{padding:"5%", fontSize:17, color:"white"}}>Đăng xuất</Text>
+                    </View>
+                </View>
+                </TouchableNativeFeedback>
             </ScrollView>
+            
         </View>
         
     )
@@ -190,59 +189,52 @@ export default function UserPage({ navigation }){
 
 const styles = StyleSheet.create({
     container:{
-        flex:1
+        flex:1,
+        backgroundColor:"#48BE6F",
+    },
+    header:{
+        width:"100%",
+        justifyContent:"center",
+        alignItems:"center",
+        height:"10%",
+        backgroundColor:"#3FAE64"
     },
     boxUser:{    
         width:"100%",
-        backgroundColor:"#1ABC9C",
         flexDirection:"row",
-        alignItems:"center",
         padding:10,
+        justifyContent:"center",
     },
     boxLeftUser:{
-        width:40,
-        height:40,
         justifyContent:"center",
         alignItems:"center",
         backgroundColor:"white",
-        borderRadius:50,
+        height:200,
+        width:200,
+        resizeMode: 'cover',
+        borderRadius:300,
     },
     boxCenterUser:{
-        paddingLeft:"5%",
-        width:"60%"
+        width:"50%"
     },
     boxRightUser:{
-        width:"30%",
-        paddingLeft:"10%"
-    },
-    boxOrder:{
-        width:"100%",
+        justifyContent:"center",
+        alignItems:"center",
         backgroundColor:"white",
-        flexDirection:"column",
+        borderRadius:100,
+        resizeMode:"cover",
+        height:50,
+        width:50,
     },
     boxSetting:{
         width:"100%",
         backgroundColor:"white",
-        marginTop:"2%",
+        marginTop:"5%",
+        position:"relative",
+        top:"30%"
     },
-    boxStatusOrder:{
+    boxStatusAddress:{
         flexDirection:"row",
-        justifyContent:"center",
-        alignItems:"center",
-    },
-    itemOrder:{
-        justifyContent:"center",
-        alignItems:"center",
-        padding:"5%",
-        position: "relative",
-        marginTop:"15%",
-        marginBottom:"15%"
-    },
-    countItemOrder:{
-        position:"absolute",
-        right:"30%",
-        top:"-5%",
-        zIndex:9
     },
     settingItem:{
         paddingLeft:"5%",

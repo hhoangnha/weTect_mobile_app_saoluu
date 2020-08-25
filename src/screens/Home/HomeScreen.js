@@ -15,8 +15,8 @@ export default class HomeScreen extends Component {
         const Tab = createMaterialBottomTabNavigator();
         return (
             <Tab.Navigator
-                activeColor="white"
-                barStyle={{backgroundColor:"#1ABC9C"}}
+                activeColor="#48BE6F"
+                barStyle={{backgroundColor:"white"}}
                 >
                 <Tab.Screen 
                     name="Home" 
@@ -25,13 +25,13 @@ export default class HomeScreen extends Component {
                         title:"Trang chủ",
                         tabBarIcon:({color}) => <Icon name='home' size={22} color={color} />
                     }} />
-                <Tab.Screen 
+                {/* <Tab.Screen 
                     name="Hot Sale" 
                     component={HotSalePage}
                     options={{
                         title:"Hot",
                         tabBarIcon:({color}) => <Icon name="history" size={22} color={color} />
-                    }} />
+                    }} /> */}
                 <Tab.Screen 
                     name="Notification" 
                     component={NotifyPage}
