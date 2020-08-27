@@ -70,6 +70,7 @@ const MyCarousel = props => {
         data={entries}
         renderItem={renderItem}
         hasParallaxImages={true}
+        autoplay={true}
       />
     </View>
   );

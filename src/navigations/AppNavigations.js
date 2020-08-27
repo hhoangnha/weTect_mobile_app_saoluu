@@ -10,6 +10,8 @@ import CheckoutPage from '../screens/Cart/Page/CheckoutPage'
 import SettingUserPage from '../screens/User/Page/SettingUserPage'
 import CartStatusPage from '../screens/User/CartStatusScreen'
 
+import ProductScreen from '../screens/Product/ProductScreen'
+
 import CheckoutLoaderPage from '../screens/Load/CheckoutLoaderPage'
 export default class AppNavigations extends Component {
     render() {
@@ -26,7 +28,7 @@ export default class AppNavigations extends Component {
                     <Stack.Screen name="SettingUserPage" component={SettingUserPage} />
                     <Stack.Screen name="CartStatusPage" component={CartStatusPage} />
 
-
+                    <Stack.Screen name="ProductScreen" component={ProductScreen} />
                     {/* Loading page */}
                     <Stack.Screen name="CheckoutLoaderPage" component={CheckoutLoaderPage} />
                 </Stack.Navigator>

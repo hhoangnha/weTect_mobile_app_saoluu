@@ -40,7 +40,7 @@ export default function UserPage({ navigation }){
                             <View style={[styles.boxCenterUser], {justifyContent:"center", alignItems:"center"}}>
                                 <Image  
                                     style={styles.boxLeftUser} 
-                                    source={{uri:"https://images.pexels.com/photos/1819483/pexels-photo-1819483.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"}}
+                                    source={{uri:"https://api.adorable.io/avatars/50/abott@adorable.png"}}
                                     >
                                     
                                 </Image>

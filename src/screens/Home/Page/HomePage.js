@@ -1,17 +1,71 @@
 import React, {useRef} from 'react'
 import { View, Text, Button,StyleSheet, Image, ScrollView, Dimensions,TouchableOpacity, ImageBackground } from 'react-native'
 import { SearchBar } from 'react-native-elements';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, TouchableNativeFeedback } from 'react-native-gesture-handler';
 import MyCarousel from './../Carousel/Carousel'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { Ionicons,Foundation } from '@expo/vector-icons';
 
 
-export default function HomePage(){
-      const slideShow = [
-        "https://cf.shopee.vn/file/e6adbe7551c1bfdc9639c67672b5863b",
-        "https://cf.shopee.vn/file/e6adbe7551c1bfdc9639c67672b5863b"
+export default function HomePage({ navigation }){
+      const products = [
+        {
+          title:"Áo thung hàn quốc",
+          image:"https://salt.tikicdn.com/cache/280x280/ts/product/40/5b/da/8fb3dfe89367fcd20ad82223df811d2d.jpg",
+          price:"200.000",
+          id:1
+        },
+        {
+          title:"Áo thung hàn quốc tế",
+          image:"https://salt.tikicdn.com/cache/280x280/ts/product/24/c0/45/1e67883d8183ab708810f16a1a420b76.jpg",
+          price:"200.000",
+          id:2
+        },
+        {
+          title:"Truyện tranh cô nan",
+          image:"https://salt.tikicdn.com/cache/280x280/ts/product/ff/26/a2/fdf754ec5975dd1738775416e26feceb.jpg",
+          price:"200.000",
+          id:4
+        },
+        {
+          title:"Áo thung hàn quốc tế",
+          image:"https://salt.tikicdn.com/cache/280x280/ts/product/24/c0/45/1e67883d8183ab708810f16a1a420b76.jpg",
+          price:"200.000",
+          id:5
+        },
+        {
+          title:"Áo thung hàn quốc",
+          image:"https://salt.tikicdn.com/cache/280x280/ts/product/40/5b/da/8fb3dfe89367fcd20ad82223df811d2d.jpg",
+          price:"200.000",
+          id:7
+        },
+        {
+          title:"Áo thung hàn quốc tế",
+          image:"https://salt.tikicdn.com/cache/280x280/ts/product/24/c0/45/1e67883d8183ab708810f16a1a420b76.jpg",
+          price:"200.000",
+          id:77
+        }
       ]
-      const image = { uri: "https://reactjs.org/logo-og.png" };
+
+      
+      
+      const Product = ({item}) => (
+        <TouchableNativeFeedback onPress={()=>{
+          navigation.navigate("ProductScreen")
+        }}>
+          <View style={styles.boxProductItem}>
+          <View style={{justifyContent:"center", alignItems:"center"}}>
+            <Image 
+              source={{uri:item.image}}
+              style={{width:150, height:200, resizeMode:"cover"}}></Image>
+              <View style={styles.boxPrice}>
+                <Text style={{color:"white", padding:5}}>200.000</Text>
+              </View>
+              <Text style={{padding:5}}>{item.title}</Text>
+          </View>
+        </View>
+        </TouchableNativeFeedback>
+      );
+
       return (
         <View style={styles.container}>
             <ImageBackground source={require("./../../../../public/background.jpg")} style={styles.image}>
@@ -19,7 +73,9 @@ export default function HomePage(){
                 <View style={styles.header}>
                   <View style={styles.boxSearch}>
                     <View style={{width:"10%", alignItems:"center", justifyContent:"center"}}>
-                      <Text>|||</Text>
+                      <TouchableNativeFeedback onPress={()=>navigation.openDrawer()}>
+                        <Foundation name="list" size={30} color="white" />
+                      </TouchableNativeFeedback>
                     </View>
                     <View style={{width:"90%"}}>
                       <SearchBar
@@ -119,8 +175,72 @@ export default function HomePage(){
                           </View>
                           
                       </View>
-                  </ScrollView>
-              </View>
+                    </ScrollView>
+                </View>
+
+                <View style={styles.boxSuggestion}>
+                  <View>
+                    <View style={{flexDirection:"row", padding:5,  alignItems:"center"}}>
+                      <Image 
+                        source={{uri:"https://thumbs.gfycat.com/BossySpicyDipper-small.gif"}}
+                        style={{ width:50, height:50}}
+                       />
+                      <Text>Đang khuyến mãi</Text>
+                    </View>
+                    <View style={{flexDirection:"row"}}>
+                      <ScrollView 
+                        horizontal
+                        showsHorizontalScrollIndicator={false} 
+                      >
+                        {
+                          products.map(item =>{
+                            return <Product key={item.id} item={item} />
+                          })
+                        }
+                        <View style={{justifyContent:"center", alignItems:"center"}}>
+                          <TouchableNativeFeedback onPress={()=>{alert("ok")}}>
+                            <Text style={{padding:20}}>Xêm thêm</Text>
+                          </TouchableNativeFeedback>
+                        </View>
+
+                      </ScrollView>
+                    </View>
+                    
+                  </View>
+                </View>
+
+                <View style={styles.boxSuggestion}>
+                  <View>
+                    <View style={{flexDirection:"row"}}>
+                      <Text>Đề xuất cho bạn</Text>
+                      {/* <Image 
+                        source={{uri:"https://thumbs.gfycat.com/BossySpicyDipper-small.gif"}}
+                        style={{ width:50, height:50}}
+                       /> */}
+                    </View>
+                    <View style={{flexDirection:"row"}}>
+                      <ScrollView 
+                        horizontal
+                        showsHorizontalScrollIndicator={false} 
+                        autoplay 
+                      >
+                        {
+                          products.map(item =>{
+                            return <Product key={item.id} item={item} />
+                          })
+                        }
+                        <View style={{justifyContent:"center", alignItems:"center"}}>
+                          <TouchableNativeFeedback onPress={()=>{alert("ok")}}>
+                            <Text style={{padding:20}}>Xêm thêm</Text>
+                          </TouchableNativeFeedback>
+                        </View>
+
+                      </ScrollView>
+                    </View>
+                    
+                  </View>
+                </View>
+
               </ScrollView>
             </ImageBackground>
             
@@ -165,18 +285,15 @@ const styles = StyleSheet.create({
       borderTopLeftRadius:100,
   },
   slideIcon:{
-      
       flexDirection:"row",
       justifyContent:"center",
       alignItems:"center",
-      
   },
   boxIcon:{
     justifyContent:"center",
     alignItems:"center", 
     backgroundColor:"white",
     padding:20,
-    
   },
   sizeIcon:{
     width:40,
@@ -185,4 +302,22 @@ const styles = StyleSheet.create({
   textIcon:{
     fontSize:12
   },
+  boxSuggestion:{
+    backgroundColor:"white",
+    marginTop:5,
+  },
+  boxProductItem:{
+    borderWidth:1,
+    borderRadius:5,
+    borderColor:"#D6DBDF",
+    margin:5,
+    position:"relative",
+  },
+  boxPrice:{
+    backgroundColor:"#F39C12",
+    justifyContent:'center',
+    alignItems:"center",
+    width:"100%",
+    marginTop:-10
+  }
 })
