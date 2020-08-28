@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center",
         height:"10%",
-        backgroundColor:"#7714BB",
+        backgroundColor:"#48BE6F",
     },
     boxUser:{    
         width:"100%",

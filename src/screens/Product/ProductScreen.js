@@ -67,9 +67,6 @@ export default function ProductScreen({ navigation }) {
             content:"hahahahahahahahah"
         }
     ])
-    const abc = ()=>{
-        <Text>ok</Text>
-    }
 
     const Product = ({item}) => (
         <TouchableNativeFeedback onPress={()=>{

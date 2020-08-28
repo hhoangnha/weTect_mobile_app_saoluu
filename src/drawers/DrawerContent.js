@@ -120,7 +120,7 @@ export function DrawerContent(props) {
                                 />
                             )}
                             label="Gian hàng weTech"
-                            onPress={() => {}}
+                            onPress={() => {props.navigation.navigate('SettingUserPage')}}
                         />
                     </Drawer.Section>
                 </View>

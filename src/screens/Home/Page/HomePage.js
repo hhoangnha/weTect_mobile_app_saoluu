@@ -201,7 +201,9 @@ export default function HomePage({ navigation }){
                             />
                           </View>
                           <View style={{width:"100%", justifyContent:"center", alignItems:"center"}}>
-                            <TouchableNativeFeedback onPress={()=>alert("Xem tất cả")}>
+                            <TouchableNativeFeedback onPress={()=>{
+                              navigation.navigate('ShipperScreen');
+                            }}>
                               <Text style={{padding:20}}>Xem tất cả</Text>
                             </TouchableNativeFeedback>
                           </View>

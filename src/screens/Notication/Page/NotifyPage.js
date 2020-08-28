@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         width:"100%",
         justifyContent:"center",
         alignItems:"center",
-        backgroundColor:"#1f65ff",
+        backgroundColor:"#48BE6F",
     },
     boxShopItem:{
         backgroundColor:"white",

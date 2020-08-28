@@ -58,7 +58,7 @@ export default class HomeScreen extends Component {
                 component={UserScreen}
                 options={{
                 tabBarLabel: 'Tài khoản',
-                tabBarColor: '#7714BB',
+                tabBarColor: '#3D9F6B',
                 tabBarIcon: ({ color }) => (
                     <FontAwesome name="user-o" size={24} color={color} />
                 ),

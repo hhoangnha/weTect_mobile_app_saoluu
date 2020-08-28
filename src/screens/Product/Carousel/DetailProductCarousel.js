@@ -73,7 +73,7 @@ export default function MyCarousel(){
               layout="stack"
           />
 
-          <Modal isVisible={showModalImage} animationIn="fadeInDown" animationOut="fadeOutUp" >
+          <Modal animationInTiming={100} isVisible={showModalImage} animationIn="fadeInDown" animationOut="fadeOutUp" >
             <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
               <ImageZoom cropWidth={Dimensions.get('window').width}
                         cropHeight={Dimensions.get('window').width}
