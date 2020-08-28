@@ -3,7 +3,7 @@ import { View, StyleSheet,ImageBackground,Alert,Image } from 'react-native'
 import DetailProductCarousel from './Carousel/DetailProductCarousel'
 import { Ionicons,FontAwesome5,EvilIcons,AntDesign} from '@expo/vector-icons';
 import { TouchableNativeFeedback, ScrollView } from 'react-native-gesture-handler';
-import { Avatar, Badge, Icon, Text, Button  } from 'react-native-elements'
+import { Avatar, Badge, Icon, Text, Button, Header  } from 'react-native-elements'
 import * as Animatable from 'react-native-animatable';
 import MapEvaluate from './MapEvaluate';
 
@@ -90,14 +90,26 @@ export default function ProductScreen({ navigation }) {
         <View style={styles.container}>
             <ImageBackground source={require("./../../../public/background2.jpg")} style={styles.image}>
                 <TouchableNativeFeedback onPress={()=>{
-                    navigation.goBack();
+                    
                 }}>
-                <View style={styles.header}>
-                    <View style={styles.iconBack}>
-                        <Ionicons name="ios-arrow-back" size={24} color="white" />
-                    </View>
-                    <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>Chi tiết sản phẩm</Text>
-                </View>
+                <Header
+                    containerStyle={{backgroundColor:"transparent"}}
+                    leftComponent={
+                        <TouchableNativeFeedback style={{padding:20}} onPress={()=>{
+                            navigation.goBack()
+                        }}>
+                            <Ionicons name="ios-arrow-back" size={24} color="white" />
+                        </TouchableNativeFeedback>
+                    }
+                    centerComponent={{ text: 'CHI TIẾT SẢN PHẨM', style: { color: '#fff' } }}
+                    rightComponent={
+                        <TouchableNativeFeedback style={{padding:20}} onPress={()=>{
+                            navigation.navigate("TabCart")
+                        }}>
+                            <FontAwesome5 name="shopping-cart" size={24} color="white" />
+                        </TouchableNativeFeedback>
+                    }
+                />
                 </TouchableNativeFeedback>
       
                 <ScrollView>
@@ -395,6 +407,7 @@ export default function ProductScreen({ navigation }) {
 const styles = StyleSheet.create({
     container:{
       flex:1,
+      backgroundColor:"#243240"
     },
     image: {
         flex: 1,

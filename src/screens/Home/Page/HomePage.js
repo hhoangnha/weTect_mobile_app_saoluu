@@ -279,7 +279,7 @@ export default function HomePage({ navigation }){
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    
+    backgroundColor:"#408585"
   },
   header:{
     flex:0.1,

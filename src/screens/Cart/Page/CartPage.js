@@ -3,6 +3,7 @@ import { View,
      Text,
      StyleSheet, 
      Image,
+     ImageBackground,
      SafeAreaView} from 'react-native'
 import NumericInput from 'react-native-numeric-input'
 import Swipeout from 'react-native-swipeout'
@@ -87,10 +88,8 @@ export default function CartPage({navigation}) {
                             value={1} 
                             minValue={1}
                             valueType='real'
-                            containerStyle={{borderWidth:0}}
+                            containerStyle={{borderWidth:0.5}}
                             onChange={()=>{}} 
-                            iconStyle={{ color: 'white' }} 
-                            upDownButtonsBackgroundColor= {"#48BE6F"}
                             onLimitReached={(isMax,msg) => console.log(isMax,msg)}
                             />
                     </View>
@@ -116,45 +115,47 @@ export default function CartPage({navigation}) {
     );
       
     return (
-        <View style={styles.container}>   
-            <View style={styles.header}>
-                <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>Giỏ hàng</Text>
-            </View>
-            <SafeAreaView style={{flex:0.8, backgroundColor:"#F3F3F3", borderTopLeftRadius:500}} >
-            <FlatList
-                data={products}
-                renderItem={({item, index})=>{
-                    return(
-                        <ProductItem item={item} index={index} />
-                    )
-                }}
-                keyExtractor={item => item.id}
-            />
-                
-            </SafeAreaView>
-            <View style={{flex:0.2, backgroundColor:"white"}}>
-                <TouchableNativeFeedback onPress={()=>alert("ma giam gia")}>
-                    <View style={{flexDirection:'row'}}>
-                        <View style={{width:"50%",padding:15, backgroundColor:"#EBEBEB", flexDirection:"row", justifyContent:'center', alignItems:"center"}}>
-                            <Text>Bạn có mã giảm giá? </Text>
-                        </View>
-                        <View style={{width:"50%",padding:15,}}>
-                            <Text>-5% khi thanh toán bằng ứng dụng</Text>
-                        </View>
-                    </View>
-                </TouchableNativeFeedback>
-                
-                <View style={{backgroundColor:"#FF8400", flex:1}}>
-                    <TouchableNativeFeedback onPress={()=>{
-                        navigation.navigate("CheckoutPage", {data:products})
-                    }}>
-                        <View style={{width:"100%", height:"100%",justifyContent:"center", alignItems:"center"}}>
-                            <Text style={{color:"white", fontSize:18}}>THANH TOÁN</Text>
+        <View style={styles.container}>  
+            <ImageBackground source={require("./../../../../public/background2.jpg")} style={styles.image}>
+                <View style={styles.header}>
+                    <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>Giỏ hàng</Text>
+                </View>
+                <SafeAreaView style={{flex:0.8, backgroundColor:"white", borderTopLeftRadius:500}} >
+                <FlatList
+                    data={products}
+                    renderItem={({item, index})=>{
+                        return(
+                            <ProductItem item={item} index={index} />
+                        )
+                    }}
+                    keyExtractor={item => item.id}
+                />
+                    
+                </SafeAreaView>
+                <View style={{flex:0.2, backgroundColor:"white"}}>
+                    <TouchableNativeFeedback onPress={()=>alert("ma giam gia")}>
+                        <View style={{flexDirection:'row'}}>
+                            <View style={{width:"50%",padding:15, backgroundColor:"#EBEBEB", flexDirection:"row", justifyContent:'center', alignItems:"center"}}>
+                                <Text>Bạn có mã giảm giá? </Text>
+                            </View>
+                            <View style={{width:"50%",padding:15,}}>
+                                <Text>-5% khi thanh toán bằng ứng dụng</Text>
+                            </View>
                         </View>
                     </TouchableNativeFeedback>
+                    
+                    <View style={{backgroundColor:"#FF8400", flex:1}}>
+                        <TouchableNativeFeedback onPress={()=>{
+                            navigation.navigate("CheckoutPage", {data:products})
+                        }}>
+                            <View style={{width:"100%", height:"100%",justifyContent:"center", alignItems:"center"}}>
+                                <Text style={{color:"white", fontSize:18}}>THANH TOÁN</Text>
+                            </View>
+                        </TouchableNativeFeedback>
+                    </View>
+                    
                 </View>
-                
-            </View>
+            </ImageBackground> 
         </View>
     )
 }
@@ -169,12 +170,15 @@ const styles = StyleSheet.create({
         flex:0.1,
         width:"100%",
         justifyContent:"center",
-        alignItems:"center"
+        alignItems:"center",
+    },
+    image: {
+        flex: 1,
+        resizeMode: "cover",
     },
     boxShopItem:{
         backgroundColor:"white",
         padding:10, 
-        margin:1,
         position:"relative",
         
     },

@@ -3,9 +3,8 @@ import { View,
      Text,
      StyleSheet, 
      Image,
+     ImageBackground,
      SafeAreaView} from 'react-native'
-import NumericInput from 'react-native-numeric-input'
-import Swipeout from 'react-native-swipeout'
 import { TouchableNativeFeedback, FlatList } from 'react-native-gesture-handler'
 import { Feather } from '@expo/vector-icons';
 
@@ -63,22 +62,23 @@ export default function CartPage({navigation}) {
     );
       
     return (
-        <View style={styles.container}>   
-            <View style={styles.header}>
-                <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>thông báo</Text>
-            </View>
-            <SafeAreaView style={{flex:1, backgroundColor:"#F3F3F3",}} >
-            <FlatList
-                data={notication}
-                renderItem={({item, index})=>{
-                    return(
-                        <ProductItem item={item} index={index} />
-                    )
-                }}
-                keyExtractor={item => item.id}
-            />
-                
-            </SafeAreaView>
+        <View style={styles.container}>  
+            <ImageBackground source={require("./../../../../public/background-notif.jpg")} style={styles.image}>
+                <View style={styles.header}>
+                    <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>thông báo</Text>
+                </View>
+                <SafeAreaView style={{flex:1, backgroundColor:"white",}} >
+                <FlatList
+                    data={notication}
+                    renderItem={({item, index})=>{
+                        return(
+                            <ProductItem item={item} index={index} />
+                        )
+                    }}
+                    keyExtractor={item => item.id}
+                />
+                </SafeAreaView>
+            </ImageBackground> 
         </View>
     )
 }
@@ -87,14 +87,17 @@ export default function CartPage({navigation}) {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:"white"
+        backgroundColor:"#F9651A"
     },
     header:{
         flex:0.1,
         width:"100%",
         justifyContent:"center",
         alignItems:"center",
-        backgroundColor:"#48BE6F",
+    },
+    image:{
+        resizeMode:"cover",
+        flex:1
     },
     boxShopItem:{
         backgroundColor:"white",
