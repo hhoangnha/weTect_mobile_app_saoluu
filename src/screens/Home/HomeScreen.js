@@ -25,7 +25,7 @@ export default class HomeScreen extends Component {
                 component={HomeDrawer}
                 options={{
                 tabBarLabel: 'Trang chủ',
-                tabBarColor: '#009387',
+                tabBarColor: '#036960',
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="shield-home-outline" size={26} color={color} />
                 ),
@@ -36,7 +36,7 @@ export default class HomeScreen extends Component {
                 component={NotifyPage}
                 options={{
                 tabBarLabel: 'Thông báo',
-                tabBarColor: '#1f65ff',
+                tabBarColor: '#D06E01',
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="bell-ring-outline" size={26} color={color} />
                 ),
@@ -47,7 +47,7 @@ export default class HomeScreen extends Component {
                 component={CartScreen}
                 options={{
                 tabBarLabel: 'Giỏ hàng',
-                tabBarColor: '#1F9436',
+                tabBarColor: '#182543',
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="cart-outline" size={26} color={color} />
                 ),
@@ -58,7 +58,7 @@ export default class HomeScreen extends Component {
                 component={UserScreen}
                 options={{
                 tabBarLabel: 'Tài khoản',
-                tabBarColor: '#3D9F6B',
+                tabBarColor: '#365D83',
                 tabBarIcon: ({ color }) => (
                     <FontAwesome name="user-o" size={24} color={color} />
                 ),

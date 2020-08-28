@@ -8,16 +8,20 @@ import { View,
     TextInput,
     Picker,
     Image, 
+    StatusBar,
+    ImageBackground,
     Alert} from 'react-native'
 import { 
     Ionicons,
     Entypo,
     AntDesign,
+    MaterialIcons
 } from '@expo/vector-icons';
+import Modal from 'react-native-modal';
+import { Button,Header } from 'react-native-elements';
 import { 
     Badge,
  } from 'react-native-paper';
-import * as Animatable from 'react-native-animatable';
 import axios from 'axios'
 
 const ListItem = (props)=>{
@@ -41,7 +45,7 @@ const ListItem = (props)=>{
 export default function CheckoutPage({ navigation,route }) {
     const [modal,setModal] = React.useState(false)
     const [modalAddress,setModalAddress] = React.useState(false)
-    
+
     const [provinces, setProvinces] = React.useState([]);
     const [district, setDistrict] = React.useState([]);
     const [ward, setWard] = React.useState([]);
@@ -79,171 +83,198 @@ export default function CheckoutPage({ navigation,route }) {
 
     return (
         <View style={styles.container}>  
-            {modal ? (
-                <Animatable.View animation="fadeIn" duration={300} style={styles.boxModal}>
-                    <View style={styles.modal}>
-                        <TouchableNativeFeedback onPress={()=>setModal(false)}>
-                            <View style={{position:"absolute", top:"2%", right:"2%"}}>
-                                <AntDesign name="closesquareo" size={24} color="red" />
-                            </View>
-                        </TouchableNativeFeedback>
-                        <View style={{justifyContent:"center", alignItems:"center"}}>
-                            <Text style={{fontSize:17,}}>XÁC NHẬN ĐƠN HÀNG</Text>
-                            <Text style={{padding:"2%",fontSize:15}}>Chào bạn, đây là hộp thư xác nhận thông tin đơn hàng của bạn</Text>
-                        </View>
-
-                        <View style={{padding:"2%"}}>
-                            <Text style={{fontSize:15}}>Bạn có: <Badge style={{fontSize:15}}> 8 sản phẩm </Badge></Text>
-                            <Text style={{fontSize:15}}>Tổng đơn giá: <Badge style={{fontSize:15}}> 280.000 vnđ </Badge></Text>
-                        </View>
-
-                        <View style={{padding:"2%"}}>
-                            <Text style={{fontSize:15}}>Địa chỉ của bạn: 288 - Nguyễn văn linh - Cần thơ </Text>
-                        </View>
-
-                        <View style={{marginTop:"5%", borderTopWidth:0.5, padding:"2%"}}>
-                            <Text style={{fontSize:15}}>Đơn vị vận chuyển: <Badge style={{fontSize:15, backgroundColor:"#1C6A1F"}}> Giao hàng nhanh </Badge></Text>
-                            <Text style={{marginTop:"1%", color:"red"}}>Hiện tại chúng tôi chỉ có hình thức thanh toán trực tiếp khi nhận hàng</Text>
-                        </View>
-
-                        <View style={{justifyContent:"center", alignItems:"center", marginTop:"5%", flexDirection:"row"}}>
-                            <TouchableNativeFeedback onPress={()=>navigation.replace('CheckoutLoaderPage')}>
-                                <View style={{backgroundColor:"#23904E", padding:"3%", borderRadius:5}}>
-                                    <Text style={{color:"white"}}>Đặt hàng</Text>
-                                </View>
-                            </TouchableNativeFeedback>
-                        </View>
+            <ImageBackground source={require("./../../../../public/background2.jpg")} style={styles.image}>
+            <Modal isVisible={modal}>
+                <View style={styles.modal}>
+                    <View style={{position:"absolute", bottom:"5%", right:"5%"}}>
+                        <Button
+                            title="Đóng"
+                            type="clear"
+                            onPress={()=>{
+                                setModal(!modal)
+                            }}
+                        />
                     </View>
-                </Animatable.View>
-            ) : null}
-            {modalAddress ? (
-                <Animatable.View animation='fadeIn' duration={300} style={styles.boxModal}>
-                    <View style={styles.modal}>
-                        <TouchableNativeFeedback onPress={()=>setModalAddress(false)}>
-                            <View style={{position:"absolute", top:"2%", right:"2%"}}>
-                                <AntDesign name="closesquareo" size={24} color="red" />
-                            </View>
-                        </TouchableNativeFeedback>
-                        <View style={{justifyContent:"center", alignItems:"center",}}>
-                            <Text style={{fontSize:17,padding:"5%"}}>THÊM ĐỊA CHỈ GIAO HÀNG</Text>
-                        </View>
-
-                            <View style={{flexDirection:"row", alignItems:'center'}}>
-                                <View style={{width:"30%"}}>
-                                    <Text style={{fontSize:17}}>Tỉnh/Thành: </Text>
-                                </View>
-                                <View style={{width:"70%"}}>
-                                    <Picker
-                                        mode="dropdown"
-                                        label="Thành phố"
-                                        onValueChange={  (item) => {
-                                            setAP(item.Title)
-                                            getDistric(item.ID)
-
-                                        }}>
-                                            {addressProvince.length>0 ? (<Picker.Item style={{fontSize:11}} label={addressProvince} key={1111111} value={'tinh thanh'} />)
-                                            
-                                            : (<Picker.Item style={{fontSize:11}} label="Chọn tỉnh thành"  key={1111111} value={'tinh thanh'} />)}
-                                            
-                                            {
-                                            provinces.map( (v)=>{
-                                                return <Picker.Item style={{fontSize:11}} label={v.Title} key={v.ID} value={v} />
-                                            })
-                                        }
-                                    </Picker>
-                                </View>
-                            </View>
-
-                            <View style={{flexDirection:"row", alignItems:'center'}}>
-                                <View style={{width:"30%"}}>
-                                    <Text style={{fontSize:17}}>Quận/Huyện: </Text>
-                                </View>
-                                <View style={{width:"70%"}}>
-                                    <Picker
-                                        mode="dropdown"
-                                        label="Quận huyện"
-                                        
-                                        onValueChange={(item) => {
-                                            setAD(item.Title)
-                                            getWard(item.ID)
-                                        }}>
-                                            {addressDistrict.length>0 ? (<Picker.Item style={{fontSize:11}} label={addressDistrict} key={1111111} value={'tinh thanh'} />)
-                                            
-                                            : (<Picker.Item style={{fontSize:11}} label="Chọn quận huyện"  key={1111111} value={'tinh thanh'} />)}
-                                            {
-                                            district.map( (v)=>{
-                                                return <Picker.Item style={{fontSize:11}} label={v.Title} key={v.ID} value={v} />
-                                            })
-                                        }
-                                    </Picker>
-                                </View>
-                            </View>
-                            <View style={{flexDirection:"row", alignItems:'center'}}>
-                                <View style={{width:"30%"}}>
-                                    <Text style={{fontSize:17}}>Xã phường: </Text>
-                                </View>
-                                <View style={{width:"70%"}}>
-                                    <Picker
-                                        mode="dropdown"
-                                        label="Xã phường"
-                                        onValueChange={(item) => {
-                                            setAW(item.Title)
-                                        }}>
-                                            {addressWard.length>0 ? (<Picker.Item style={{fontSize:11}} label={addressWard} key={1111111} value={'thi tran'} />)
-                                            
-                                            : (<Picker.Item style={{fontSize:11}} label="Chọn thị xã/ thị trấn"  key={1111111} value={'thi tran'} />)}
-                                            {
-                                            ward.map( (v)=>{
-                                                return <Picker.Item style={{fontSize:11}} label={v.Title} key={v.ID} value={v} />
-                                            })
-                                        }
-                                    </Picker>
-                                </View>
-                            </View>
-
-                            <View style={{flexDirection:"row", alignItems:'center', marginTop:"2%"}}>
-                                <View style={{width:"30%"}}>
-                                    <Text style={{fontSize:17}}>Địa chỉ nhà: </Text>
-                                </View>
-                                <View style={{width:"70%"}}>
-                                    <TextInput style={{
-                                        height:30,
-                                        width:"100%",
-                                        borderColor:"red",
-                                        borderBottomWidth:1
-                                    }} 
-                                    multiline={true}
-                                    onChangeText={(value)=>{
-                                        setAH(value)
-                                    }} />
-                                </View>
-                            </View>
-
-                        <View style={{padding:20, marginTop:"5%"}}>
-                                <Text>{  } </Text>
-                        </View>
-
-                        <View style={{justifyContent:"center", alignItems:"center", marginTop:"5%", flexDirection:"row"}}>
-                            <TouchableNativeFeedback onPress={()=>{
-                                setModalAddress(false)
-                            }}>
-                                <View style={{backgroundColor:"#48BE6F", padding:"3%", borderRadius:5}}>
-                                    <Text style={{color:"white"}}>Giao đến địa chỉ này</Text>
-                                </View>
-                            </TouchableNativeFeedback>
-                        </View>
+                    <View style={{justifyContent:"center", alignItems:"center", marginTop:"5%"}}>
+                        <Text style={{fontSize:17,}}>XÁC NHẬN ĐƠN HÀNG</Text>
+                        <Text style={{padding:"2%",fontSize:15}}>Chào bạn, đây là hộp thư xác nhận thông tin đơn hàng của bạn</Text>
                     </View>
-                </Animatable.View>
-            ) : null}
 
-            <TouchableNativeFeedback onPress={()=>navigation.goBack()}>
-                <View style={styles.header}>
-                    <View style={styles.iconBack}>
-                        <Ionicons name="ios-arrow-back" size={24} color="black" />
+                    <View style={{padding:"2%"}}>
+                        <Text style={{fontSize:15}}>Bạn có: <Badge style={{fontSize:15}}> 8 sản phẩm </Badge></Text>
+                        <Text style={{fontSize:15}}>Tổng đơn giá: <Badge style={{fontSize:15}}> 280.000 vnđ </Badge></Text>
                     </View>
-                    <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>thanh toán</Text>
+
+                    <View style={{padding:"2%"}}>
+                        <Text style={{fontSize:15}}>Địa chỉ của bạn: 288 - Nguyễn văn linh - Cần thơ </Text>
+                    </View>
+
+                    <View style={{marginTop:"5%", borderTopWidth:0.5, padding:"2%"}}>
+                        <Text style={{fontSize:15}}>Đơn vị vận chuyển: <Badge style={{fontSize:15, backgroundColor:"#1C6A1F"}}> Giao hàng nhanh </Badge></Text>
+                        <Text style={{marginTop:"1%", color:"red"}}>Hiện tại chúng tôi chỉ có hình thức thanh toán trực tiếp khi nhận hàng</Text>
+                    </View>
+
+                    <View style={{justifyContent:"center", alignItems:"center", marginTop:"5%", flexDirection:"row"}}>
+                        <Button
+                            type="solid"
+                            title="Giao đến địa chỉ này"
+                            buttonStyle={{backgroundColor:"#FB3500", padding:20}}
+                            onPress={()=>{
+                                navigation.replace('CheckoutLoaderPage')
+                            }}
+                        />
+                    </View>
                 </View>
-            </TouchableNativeFeedback>
+            </Modal>
+
+            <Modal 
+                isVisible={modalAddress}
+                animationInTiming={100}  
+                animationIn="slideInLeft"  
+                animationOut="slideOutLeft"
+            >
+                <StatusBar backgroundColor="rgba(0, 0, 0, 1)" />
+                <View style={styles.modal}>
+                    <View style={{position:"absolute", bottom:"5%", right:"5%"}}>
+                        <Button
+                            title="Đóng"
+                            type="clear"
+                            onPress={()=>{
+                                setModalAddress(!modalAddress)
+                            }}
+                        />
+                    </View>
+                    <View style={{justifyContent:"center", alignItems:"center", marginTop:"5%"}}>
+                        <Text style={{fontSize:17,padding:"5%"}}>THÊM ĐỊA CHỈ GIAO HÀNG</Text>
+                    </View>
+
+                        <View style={{flexDirection:"row", alignItems:'center'}}>
+                            <View style={{width:"30%"}}>
+                                <Text style={{fontSize:17}}>Tỉnh/Thành: </Text>
+                            </View>
+                            <View style={{width:"70%"}}>
+                                <Picker
+                                    mode="dropdown"
+                                    label="Thành phố"
+                                    onValueChange={  (item) => {
+                                        getDistric(item.ID)
+                                        setAP(item.Title)
+                                    }}>
+                                        {addressProvince !="" ? (<Picker.Item style={{fontSize:11}} label={addressProvince} key={1111111} value={'tinh thanh'} />)
+                                        
+                                        : (<Picker.Item style={{fontSize:11}} label="Chọn tỉnh thành"  key={1111111} value={'tinh thanh'} />)}
+                                        
+                                        {
+                                        provinces.map( (v)=>{
+                                            return <Picker.Item style={{fontSize:11}} label={v.Title} key={v.ID} value={v} />
+                                        })
+                                    }
+                                </Picker>
+                            </View>
+                        </View>
+
+                        <View style={{flexDirection:"row", alignItems:'center'}}>
+                            <View style={{width:"30%"}}>
+                                <Text style={{fontSize:17}}>Quận/Huyện: </Text>
+                            </View>
+                            <View style={{width:"70%"}}>
+                                <Picker
+                                    mode="dropdown"
+                                    label="Quận huyện"
+                                    onValueChange={(item) => {
+                                        setAD(`${item.Title} - `)
+                                        getWard(item.ID)
+                                    }}>
+                                        {addressDistrict !="" ? (<Picker.Item style={{fontSize:11}} label={addressDistrict} key={1111111} value={'tinh thanh'} />)
+                                        
+                                        : (<Picker.Item style={{fontSize:11}} label="Chọn quận huyện"  key={1111111} value={'tinh thanh'} />)}
+                                        {
+                                        district.map( (v)=>{
+                                            return <Picker.Item style={{fontSize:11}} label={v.Title} key={v.ID} value={v} />
+                                        })
+                                    }
+                                </Picker>
+                            </View>
+                        </View>
+                        <View style={{flexDirection:"row", alignItems:'center'}}>
+                            <View style={{width:"30%"}}>
+                                <Text style={{fontSize:17}}>Xã phường: </Text>
+                            </View>
+                            <View style={{width:"70%"}}>
+                                <Picker
+                                    mode="dropdown"
+                                    label="Xã phường"
+                                    onValueChange={(item) => {
+                                        setAW(`${item.Title} - `)
+                                    }}>
+                                        {addressWard !="" ? (<Picker.Item style={{fontSize:11}} label={addressWard} key={1111111} value={'thi tran'} />)
+                                        
+                                        : (<Picker.Item style={{fontSize:11}} label="Chọn thị xã/ thị trấn"  key={1111111} value={'thi tran'} />)}
+                                        {
+                                        ward.map( (v)=>{
+                                            return <Picker.Item style={{fontSize:11}} label={v.Title} key={v.ID} value={v} />
+                                        })
+                                    }
+                                </Picker>
+                            </View>
+                        </View>
+
+                        <View style={{flexDirection:"row", alignItems:'center', marginTop:"2%"}}>
+                            <View style={{width:"30%"}}>
+                                <Text style={{fontSize:17}}>Địa chỉ nhà: </Text>
+                            </View>
+                            <View style={{width:"70%"}}>
+                                <TextInput style={{
+                                    height:30,
+                                    width:"100%",
+                                    borderColor:"red",
+                                    borderBottomWidth:1
+                                }} 
+                                multiline={true}
+                                onChangeText={(value)=>{
+                                    setAH(`${value} - `)
+                                }} />
+                            </View>
+                        </View>
+
+                    <View style={{padding:20, marginTop:"5%"}}>
+                            <Text>{  } </Text>
+                    </View>
+
+                    <View style={{justifyContent:"center", alignItems:"center", marginTop:"5%", flexDirection:"row"}}>
+                           <Button
+                            type="outline"
+                            title="Giao đến địa chỉ này"
+                            buttonStyle={{backgroundColor:"#EFEFEF", padding:20}}
+
+                            onPress={()=>{
+                                setModalAddress(!modalAddress)
+                            }}
+                           />
+                    </View>
+                </View>
+            </Modal>
+
+            <Header
+                leftComponent={
+                    <TouchableNativeFeedback style={{padding:20}} onPress={()=>{
+                        navigation.goBack()
+                    }}>
+                        <Ionicons name="ios-arrow-back" size={24} color="white" />
+                    </TouchableNativeFeedback>
+                }
+                containerStyle={{
+                    backgroundColor:"transparent"
+                }}
+                centerComponent={{ text: 'THANH TOÁN', style: { color: '#fff', fontSize:17 } }}
+                rightComponent={
+                    <TouchableNativeFeedback style={{padding:20}} onPress={()=>{
+                        navigation.navigate('TabHome')
+                    }}>
+                        <MaterialIcons name="home" size={24} color="white" />
+                    </TouchableNativeFeedback>
+                }
+            />
             <SafeAreaView showsVerticalScrollIndicator={false}
                 style={{flex:1}} >
                 <TouchableNativeFeedback onPress={()=>alert("Địa chỉ")} style={{borderBottomWidth:.5,borderBottomColor:"#C4CCDF"}}>
@@ -254,7 +285,7 @@ export default function CheckoutPage({ navigation,route }) {
                                 <Entypo name="address" size={20} color="black" />
                             </View>
                             <View style={{width:"70%"}}>
-                                <Text style={{marginLeft:"3%"}}>{ addressHome } / { addressWard } / { addressDistrict } / { addressProvince }</Text>
+                                <Text style={{marginLeft:"3%"}}>{addressHome}{addressWard}{addressDistrict}{addressProvince}</Text>
                             </View>
                             <View style={{width:"20%"}}>
                                 <Text style={{color:"#F54509"}}>Mặc định</Text>
@@ -303,7 +334,7 @@ export default function CheckoutPage({ navigation,route }) {
                                 <Text >van chuyen: 30.000</Text>
                             </View>
                             <TouchableNativeFeedback onPress={()=>{
-                                if(addressHome.length<=0 || addressWard.length <=0 || addressDistrict.length<=0 || addressProvince.length<=0){
+                                if(addressHome == ""){
                                     Alert.alert(
                                         "Thông báo",
                                         "Vui lòng kiểm tra lại địa chỉ giao hàng",
@@ -325,7 +356,7 @@ export default function CheckoutPage({ navigation,route }) {
                     </View>
                 </View>
             </SafeAreaView>   
-            
+            </ImageBackground>
         </View>
         
     )
@@ -346,6 +377,10 @@ const styles = StyleSheet.create({
     iconBack:{
         position:"absolute",
         left:"5%"
+    },
+    image:{
+        flex:1, 
+        resizeMode:"cover"
     },
     boxAddress:{
         width:"100%",
@@ -376,7 +411,6 @@ const styles = StyleSheet.create({
         width:"100%",
         height:"100%",
         position:"absolute",
-        backgroundColor:"rgba(0,0,0,0.5)",
         zIndex:9,
         justifyContent:"center",
         alignItems:"center"
@@ -384,8 +418,9 @@ const styles = StyleSheet.create({
     modal:{
         backgroundColor:"white",
         width:"100%",
-        
-        padding:"5%"
+        padding:"5%",
+        flex:1,
+        justifyContent:"center",
     },
     fadingContainer: {
         paddingVertical: 8,
