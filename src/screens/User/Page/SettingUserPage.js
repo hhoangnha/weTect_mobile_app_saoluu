@@ -29,7 +29,7 @@ export default function SettingUserPage({ navigation }) {
                     <View style={styles.iconBack}>
                         <Ionicons name="ios-arrow-back" size={24} color="black" />
                     </View>
-                    <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>tài khoản</Text>
+                    <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>thiết lập tài khoản</Text>
                 </View>
             </TouchableNativeFeedback>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -142,8 +142,9 @@ const styles = StyleSheet.create({
         flex:1,
     },
     header:{
+        flex:0.2,
         width:"100%",
-        backgroundColor:"#1ABC9C",
+        backgroundColor:"#48BE6F",
         justifyContent:"center",
         alignItems:"center",
         flexDirection:"row",

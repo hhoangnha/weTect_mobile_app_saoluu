@@ -4,7 +4,7 @@ import { View, Text,Image,StatusBar } from 'react-native'
 export default function CheckoutLoaderPage( {navigation} ) {
     setTimeout(() => {
         navigation.replace("CartStatusPage");
-    }, 10000);
+    }, 2000);
     return (
         <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
             <StatusBar hidden backgroundColor="white" />

@@ -13,7 +13,7 @@ const Tab = createMaterialTopTabNavigator();
 export default function CartStatusPage({navigation}) {
     return (
         <View style={styles.container}>   
-            <TouchableNativeFeedback onPress={()=>navigation.replace('HomeScreen')}>
+            <TouchableNativeFeedback onPress={()=>navigation.navigate('UserScreen')}>
                 <View style={styles.header}>
                     <View style={styles.iconBack}>
                         <Ionicons name="ios-arrow-back" size={24} color="black" />
@@ -54,8 +54,9 @@ const styles = StyleSheet.create({
         flex:1,
     },
     header:{
+        flex:0.1,
         width:"100%",
-        backgroundColor:"#1ABC9C",
+        backgroundColor:"#48BE6F",
         justifyContent:"center",
         alignItems:"center"
     },
