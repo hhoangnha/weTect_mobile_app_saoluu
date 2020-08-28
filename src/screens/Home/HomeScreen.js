@@ -47,7 +47,7 @@ export default class HomeScreen extends Component {
                 component={CartScreen}
                 options={{
                 tabBarLabel: 'Giỏ hàng',
-                tabBarColor: '#3D9349',
+                tabBarColor: '#1F9436',
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="cart-outline" size={26} color={color} />
                 ),
@@ -58,7 +58,7 @@ export default class HomeScreen extends Component {
                 component={UserScreen}
                 options={{
                 tabBarLabel: 'Tài khoản',
-                tabBarColor: '#1F9436',
+                tabBarColor: '#7714BB',
                 tabBarIcon: ({ color }) => (
                     <FontAwesome name="user-o" size={24} color={color} />
                 ),

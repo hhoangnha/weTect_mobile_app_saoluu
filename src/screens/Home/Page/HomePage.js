@@ -3,6 +3,7 @@ import { View, Text, Button,StyleSheet, Image, ScrollView, Dimensions,TouchableO
 import { SearchBar } from 'react-native-elements';
 import { FlatList, TouchableNativeFeedback } from 'react-native-gesture-handler';
 import MyCarousel from './../Carousel/Carousel'
+import CountDown from 'react-native-countdown-component';
 import { Ionicons,Foundation } from '@expo/vector-icons';
 
 
@@ -180,12 +181,37 @@ export default function HomePage({ navigation }){
 
                 <View style={styles.boxSuggestion}>
                   <View>
-                    <View style={{flexDirection:"row", padding:5,  alignItems:"center"}}>
-                      <Image 
-                        source={{uri:"https://thumbs.gfycat.com/BossySpicyDipper-small.gif"}}
-                        style={{ width:50, height:50}}
-                       />
-                      <Text>Đang khuyến mãi</Text>
+                    <View style={{flexDirection:"row", padding:5,  alignItems:"center",}}>
+                      <View style={{width:"50%"}}>
+                        <View style={{flexDirection:"row", padding:10}}>
+                          <Image 
+                            source={{uri:"https://thumbs.gfycat.com/BossySpicyDipper-small.gif"}}
+                            style={{ width:50, height:50}}
+                          />
+                          <View style={{ paddingLeft:10, paddingTop:5, width:"80%" }}>
+                            <CountDown
+                              until={12*(6*(60 * 10))}
+                              onFinish={() => alert('finished')}
+                              // onPress={() => alert('hello')}
+                              timeLabels={{d: "Ngày", h:"Giờ", m:"Phút", s:"Giây"}}
+                              size={15}
+                              timeToShow={["H",'M', 'S']}
+                              separatorStyle={{color: '#1CC625'}}
+                              showSeparator
+                            />
+                          </View>
+                          <View style={{width:"100%", justifyContent:"center", alignItems:"center"}}>
+                            <TouchableNativeFeedback onPress={()=>alert("Xem tất cả")}>
+                              <Text style={{padding:20}}>Xem tất cả</Text>
+                            </TouchableNativeFeedback>
+                          </View>
+                        </View>
+                        
+                        <Text>Đang khuyến mãi</Text>
+                      </View>
+                      <View style={{width:"50%", justifyContent:"center", alignItems:"center"}}>
+                        
+                      </View>
                     </View>
                     <View style={{flexDirection:"row"}}>
                       <ScrollView 

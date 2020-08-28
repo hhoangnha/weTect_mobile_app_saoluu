@@ -45,7 +45,7 @@ export default function UserPage({ navigation }){
                                     
                                 </Image>
                                 <View style={{justifyContent:"center", alignItems:"center"}}>
-                                    <Text style={{paddingTop:20, fontSize:25, color:"white"}}>ABCD</Text>
+                                    <Text style={{paddingTop:20, fontSize:25}}>ABCD</Text>
                                 </View>
                             </View >
                             
@@ -58,20 +58,20 @@ export default function UserPage({ navigation }){
                         <View style={{width:"95%", justifyContent:"center", alignItems:"center"}}>
                             <View style={{flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
                                 <View style={{width:"25%", alignItems:"center", justifyContent:"center"}}>
-                                    <Foundation name="checkbox" size={30} color="#EFEFEF" />
-                                    <Text style={{color:"#EFEFEF"}}>Đã đặt</Text>
+                                    <Foundation name="checkbox" size={30}  />
+                                    <Text style={{}}>Đã đặt</Text>
                                 </View>
                                 <View style={{width:"25%", alignItems:"center"}}>
-                                    <AntDesign name="inbox" size={30} color="#EFEFEF" />
-                                    <Text style={{color:"#EFEFEF"}}>Đóng gói</Text>
+                                    <AntDesign name="inbox" size={30}  />
+                                    <Text style={{}}>Đóng gói</Text>
                                 </View>
                                 <View style={{width:"25%", alignItems:"center"}}>
-                                    <MaterialIcons name="directions-car" size={30} color="#EFEFEF" />
-                                    <Text style={{color:"#EFEFEF"}}>Đang giao </Text>
+                                    <MaterialIcons name="directions-car" size={30}  />
+                                    <Text style={{}}>Đang giao </Text>
                                 </View>
                                 <View style={{width:"25%", alignItems:"center"}}>
-                                    <MaterialCommunityIcons name="emoticon-outline" size={30} color="#EFEFEF" />
-                                    <Text style={{color:"#EFEFEF"}}>Hoàn tất</Text>
+                                    <MaterialCommunityIcons name="emoticon-outline" size={30}  />
+                                    <Text style={{}}>Hoàn tất</Text>
                                 </View>
                             </View>
                         </View>
@@ -190,14 +190,13 @@ export default function UserPage({ navigation }){
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:"#48BE6F",
     },
     header:{
         width:"100%",
         justifyContent:"center",
         alignItems:"center",
         height:"10%",
-        backgroundColor:"#3FAE64"
+        backgroundColor:"#7714BB",
     },
     boxUser:{    
         width:"100%",

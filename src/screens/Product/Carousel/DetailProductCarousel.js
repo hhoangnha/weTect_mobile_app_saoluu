@@ -1,8 +1,12 @@
 import React, {useRef, useState, useEffect} from 'react';
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
-import { Dimensions, StyleSheet,View,Text, TouchableNativeFeedback } from 'react-native';
+import { Dimensions, StyleSheet,View,Text,Image, TouchableNativeFeedback} from 'react-native';
+import Modal from 'react-native-modal';
+import { Button } from 'react-native-elements';
+import ImageZoom from 'react-native-image-pan-zoom';
 
 const { width: screenWidth } = Dimensions.get('window')
+const windowHeight = Dimensions.get('window').height;
 const ENTRIES1 = [
     {
       title: 'Beautiful and dramatic Antelope Canyon',
@@ -30,35 +34,75 @@ const ENTRIES1 = [
       illustration: 'https://i.imgur.com/2nCt3Sbl.jpg',
     },
   ];
-const _renderItem = ({item, index}, parallaxProps)=>{
-    return (
-        <TouchableNativeFeedback onPress={()=>alert(index)}>
-            <View style={styles.item}>
-                <ParallaxImage
-                    source={{ uri: item.illustration }}
-                    containerStyle={styles.imageContainer}
-                    style={styles.image}
-                    parallaxFactor={0}
-                    {...parallaxProps}
-                />
-                {/* <Text style={styles.title} numberOfLines={2}>
-                    { item.title }
-                </Text> */}
-            </View>
-        </TouchableNativeFeedback>
-    );
-}
+
 export default function MyCarousel(){
+    const [showModalImage, setShowModalImage] = useState(false)
+    const [zoomImg, setZoomimg] = useState("https://ipet.vn/wp-content/uploads/2019/06/husky.png")
+
+    const _renderItem = ({item, index}, parallaxProps)=>{
+      return (
+          <TouchableNativeFeedback onPress={ async ()=>{
+            await setZoomimg(item.illustration)
+            setShowModalImage(!showModalImage)
+          }}>
+              <View style={styles.item}>
+                  <ParallaxImage
+                      source={{ uri: item.illustration }}
+                      containerStyle={styles.imageContainer}
+                      style={styles.image}
+                      parallaxFactor={0}
+                      {...parallaxProps}
+                  />
+                  {/* <Text style={styles.title} numberOfLines={2}>
+                      { item.title }
+                  </Text> */}
+              </View>
+          </TouchableNativeFeedback>
+      );
+  }
     return (
-        <Carousel
-            sliderWidth={screenWidth}
-            sliderHeight={screenWidth}
-            itemWidth={screenWidth - 60}
-            data={ENTRIES1}
-            renderItem={_renderItem}
-            hasParallaxImages={true}
-            layout="stack"
-        />
+        <View>
+          <Carousel
+              sliderWidth={screenWidth}
+              sliderHeight={screenWidth}
+              itemWidth={screenWidth - 60}
+              data={ENTRIES1}
+              renderItem={_renderItem}
+              hasParallaxImages={true}
+              autoplay={true}
+              layout="stack"
+          />
+
+          <Modal isVisible={showModalImage} animationIn="fadeInDown" animationOut="fadeOutUp" >
+            <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+              <ImageZoom cropWidth={Dimensions.get('window').width}
+                        cropHeight={Dimensions.get('window').width}
+                        imageWidth={Dimensions.get('window').width}
+                        imageHeight={400}>
+                  <Image style={{width:"100%", height:"100%"}}
+                        source={{uri:zoomImg}}/>
+                  
+              </ImageZoom>
+              <TouchableNativeFeedback onPress={()=>{
+                setShowModalImage(!showModalImage)
+              }}>
+                <View style={{
+                  position:"absolute", 
+                  bottom:0,
+                  backgroundColor:"white", 
+                  width:"100%",
+                  justifyContent:"center", 
+                  alignItems:"center",
+                  padding:20}}>
+                  <Text style={{color:"blue", fontSize:15}}>Đóng</Text>
+                </View>
+              </TouchableNativeFeedback>
+            </View>
+            
+          </Modal>
+
+        </View>
+
     );
 }
 
