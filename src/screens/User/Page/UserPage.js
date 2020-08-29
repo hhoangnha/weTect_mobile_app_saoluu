@@ -25,11 +25,13 @@ import {
 import { 
     TouchableNativeFeedback
  } from 'react-native-gesture-handler'
+ import * as Animatable from 'react-native-animatable';
 
 
 export default function UserPage({ navigation }){
     return (
         <View style={styles.container}>
+            <ImageBackground source={require("./../../../../public/background.jpg")} style={{flex:1, resizeMode:"cover"}}>
             <View style={styles.header}>
                 <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>tài khoản</Text>
             </View>
@@ -38,16 +40,18 @@ export default function UserPage({ navigation }){
                     <TouchableNativeFeedback onPress={()=>navigation.navigate("SettingUserPage")}>
                         <View style={styles.boxUser} >
                             <View style={[styles.boxCenterUser], {justifyContent:"center", alignItems:"center"}}>
+                            <Animatable.View animation="pulse" easing="ease-out" iterationCount="infinite" style={{ textAlign: 'center' }}>
                                 <Image  
                                     style={styles.boxLeftUser} 
                                     source={{uri:"https://api.adorable.io/avatars/50/abott@adorable.png"}}
                                     >
                                     
                                 </Image>
-                                <View style={{justifyContent:"center", alignItems:"center"}}>
-                                    <Text style={{paddingTop:20, fontSize:25}}>ABCD</Text>
-                                </View>
-                            </View >
+                            </Animatable.View>
+                            <View style={{justifyContent:"center", alignItems:"center"}}>
+                                <Text style={{paddingTop:20, fontSize:25,color:"white"}}>ABCD</Text>
+                            </View>
+                            </View>
                             
                         </View>
                     </TouchableNativeFeedback>
@@ -58,20 +62,20 @@ export default function UserPage({ navigation }){
                         <View style={{width:"95%", justifyContent:"center", alignItems:"center"}}>
                             <View style={{flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
                                 <View style={{width:"25%", alignItems:"center", justifyContent:"center"}}>
-                                    <Foundation name="checkbox" size={30}  />
-                                    <Text style={{}}>Đã đặt</Text>
+                                    <Foundation name="checkbox" size={30} color="#fff" />
+                                    <Text style={{color:"white"}}>Đã đặt</Text>
                                 </View>
                                 <View style={{width:"25%", alignItems:"center"}}>
-                                    <AntDesign name="inbox" size={30}  />
-                                    <Text style={{}}>Đóng gói</Text>
+                                    <AntDesign name="inbox" size={30} color="#fff" />
+                                    <Text style={{color:"white"}}>Đóng gói</Text>
                                 </View>
                                 <View style={{width:"25%", alignItems:"center"}}>
-                                    <MaterialIcons name="directions-car" size={30}  />
-                                    <Text style={{}}>Đang giao </Text>
+                                    <MaterialIcons name="directions-car" size={30} color="#fff" />
+                                    <Text style={{color:"white"}}>Đang giao </Text>
                                 </View>
                                 <View style={{width:"25%", alignItems:"center"}}>
-                                    <MaterialCommunityIcons name="emoticon-outline" size={30}  />
-                                    <Text style={{}}>Hoàn tất</Text>
+                                    <MaterialCommunityIcons name="emoticon-outline" size={30} color="#fff" />
+                                    <Text style={{color:"white"}}>Hoàn tất</Text>
                                 </View>
                             </View>
                         </View>
@@ -181,7 +185,7 @@ export default function UserPage({ navigation }){
                 </View>
                 </TouchableNativeFeedback>
             </ScrollView>
-            
+            </ImageBackground>
         </View>
         
     )
@@ -196,7 +200,7 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         alignItems:"center",
         height:"10%",
-        backgroundColor:"#48BE6F",
+        backgroundColor:"transparent",
     },
     boxUser:{    
         width:"100%",

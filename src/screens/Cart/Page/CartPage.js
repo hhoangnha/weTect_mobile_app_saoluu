@@ -3,11 +3,13 @@ import { View,
      Text,
      StyleSheet, 
      Image,
+     ImageBackground,
      SafeAreaView} from 'react-native'
 import NumericInput from 'react-native-numeric-input'
 import Swipeout from 'react-native-swipeout'
 import { TouchableNativeFeedback, FlatList } from 'react-native-gesture-handler'
-import { Feather } from '@expo/vector-icons';
+import { Ionicons,FontAwesome5,EvilIcons,AntDesign,Feather} from '@expo/vector-icons';
+import { Header } from 'react-native-elements'
 
 export default function CartPage({navigation}) {
     const [products, setProduct] = useState(
@@ -87,10 +89,8 @@ export default function CartPage({navigation}) {
                             value={1} 
                             minValue={1}
                             valueType='real'
-                            containerStyle={{borderWidth:0}}
+                            containerStyle={{borderWidth:1}}
                             onChange={()=>{}} 
-                            iconStyle={{ color: 'white' }} 
-                            upDownButtonsBackgroundColor= {"#48BE6F"}
                             onLimitReached={(isMax,msg) => console.log(isMax,msg)}
                             />
                     </View>
@@ -117,9 +117,15 @@ export default function CartPage({navigation}) {
       
     return (
         <View style={styles.container}>   
-            <View style={styles.header}>
-                <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>Giỏ hàng</Text>
-            </View>
+         <ImageBackground source={require("./../../../../public/background2.jpg")} style={styles.image}>
+            <Header
+                containerStyle={{
+                    backgroundColor: 'transparent',
+                }}
+                centerComponent={
+                    <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>giỏ hàng</Text>
+                }
+            />
             <SafeAreaView style={{flex:0.8, backgroundColor:"#F3F3F3", borderTopLeftRadius:500}} >
             <FlatList
                 data={products}
@@ -155,6 +161,7 @@ export default function CartPage({navigation}) {
                 </View>
                 
             </View>
+            </ImageBackground>
         </View>
     )
 }
@@ -163,7 +170,11 @@ export default function CartPage({navigation}) {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:"#48BE6F",
+        backgroundColor:"#1F3347",
+    },
+    image:{
+        flex:1,
+        resizeMode:"cover"
     },
     header:{
         flex:0.1,
@@ -174,7 +185,6 @@ const styles = StyleSheet.create({
     boxShopItem:{
         backgroundColor:"white",
         padding:10, 
-        margin:1,
         position:"relative",
         
     },

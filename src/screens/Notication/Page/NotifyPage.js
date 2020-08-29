@@ -3,6 +3,7 @@ import { View,
      Text,
      StyleSheet, 
      Image,
+     ImageBackground,
      SafeAreaView} from 'react-native'
 import NumericInput from 'react-native-numeric-input'
 import Swipeout from 'react-native-swipeout'
@@ -63,7 +64,8 @@ export default function CartPage({navigation}) {
     );
       
     return (
-        <View style={styles.container}>   
+        <View style={styles.container}> 
+        <ImageBackground source={require("./../../../../public/pexels-zetong-li-1784578.jpg")} style={{flex:1, resizeMode:"cover"}}>
             <View style={styles.header}>
                 <Text style={{fontSize:17,textTransform:"uppercase", color:"white",padding:10}}>thông báo</Text>
             </View>
@@ -79,6 +81,7 @@ export default function CartPage({navigation}) {
             />
                 
             </SafeAreaView>
+        </ImageBackground>  
         </View>
     )
 }
@@ -87,14 +90,13 @@ export default function CartPage({navigation}) {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:"white"
+        backgroundColor:"#EC6E04"
     },
     header:{
         flex:0.1,
         width:"100%",
         justifyContent:"center",
         alignItems:"center",
-        backgroundColor:"#48BE6F",
     },
     boxShopItem:{
         backgroundColor:"white",

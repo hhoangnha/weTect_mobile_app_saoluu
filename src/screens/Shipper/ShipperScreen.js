@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import ShipperHomePage from './Page/ShipperHomePage'
 import OrderShipper from './Page/Order/OrderShipper'
+import OrderShipMap from './Page/Map/OrderShipMap'
 
 const Stack = createStackNavigator();
 export default function ShipperScreen() {
@@ -12,6 +13,8 @@ export default function ShipperScreen() {
         }}>
             <Stack.Screen name="ShipperHomePage" component={ShipperHomePage} />
             <Stack.Screen name="OrderShipper" component={OrderShipper} />
+
+            <Stack.Screen name="OrderShipMap" component={OrderShipMap} />
         </Stack.Navigator>
     )
 }

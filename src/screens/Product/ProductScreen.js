@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, StyleSheet,ImageBackground,Alert,Image } from 'react-native'
 import DetailProductCarousel from './Carousel/DetailProductCarousel'
-import { Ionicons,FontAwesome5,EvilIcons,AntDesign} from '@expo/vector-icons';
+import { Ionicons,FontAwesome5,EvilIcons,AntDesign,Feather} from '@expo/vector-icons';
 import { TouchableNativeFeedback, ScrollView } from 'react-native-gesture-handler';
 import { Avatar, Badge, Icon, Text, Button,Header  } from 'react-native-elements'
 import * as Animatable from 'react-native-animatable';
@@ -90,6 +90,9 @@ export default function ProductScreen({ navigation }) {
         <View style={styles.container}>
             <ImageBackground source={require("./../../../public/background2.jpg")} style={styles.image}>
                 <Header
+                    containerStyle={{
+                        backgroundColor: 'transparent',
+                    }}
                     leftComponent={
                         <TouchableNativeFeedback onPress={()=>{
                             navigation.goBack()
@@ -107,7 +110,7 @@ export default function ProductScreen({ navigation }) {
                             navigation.navigate("TabCart")
                         }}>
                             <View style={{padding:25}}>
-                                <Ionicons name="ios-arrow-back" size={24} color="white" />
+                                <Feather name="shopping-cart" size={24} color="white" />
                             </View>
                         </TouchableNativeFeedback>
                     }

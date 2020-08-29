@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet,ImageBackground } from 'react-native'
 import { Button, ThemeProvider,Header,Avatar,Text } from 'react-native-elements';
 import { AntDesign,FontAwesome5,Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableNativeFeedback } from 'react-native-gesture-handler';
@@ -7,6 +7,7 @@ import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 export default function ShipperHomePage({ navigation }) {
     return (
         <View style={styles.container}>
+            <ImageBackground source={require("./../../../../public/pexels-pixabay-40996.jpg")} style={{flex:1, resizeMode:"cover"}}>
             <Header
                 centerComponent={
                     <Text style={{color:"white", fontSize:17}}>TRANG CHỦ</Text>
@@ -22,17 +23,19 @@ export default function ShipperHomePage({ navigation }) {
                     ></Avatar>
                 }
                 containerStyle={{
-                    backgroundColor: '#2DAC5C',
+                    backgroundColor: 'transparent',
+                    borderBottomWidth:0
                   }}
             />
 
+            <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
             <View style={styles.content}>
                 <View style={styles.boxContent}>
                     <View style={{justifyContent:"center", alignItems:"center", flexDirection:"row"}}>
                         <View style={styles.item}>
                             <TouchableNativeFeedback style={{alignItems:"center", padding:20}}>
-                                <Ionicons name="md-train" size={27} color="#F73D02" />
-                                <Text>Giao gấp</Text>
+                                <MaterialCommunityIcons name="run-fast" size={30} color="#F73D02" />
+                                <Text>Lấy hàng</Text>
                             </TouchableNativeFeedback>
                         </View>
                         <View style={styles.item}>
@@ -78,6 +81,8 @@ export default function ShipperHomePage({ navigation }) {
                     </View>
                 </View>
             </View>
+            </View>
+            </ImageBackground>
         </View>
     )
 }
@@ -85,17 +90,18 @@ export default function ShipperHomePage({ navigation }) {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:"white"
+        backgroundColor:"white",
     },
     content:{
         flex:0.5,
         justifyContent:"center",
         alignItems:"center",
-        backgroundColor:"white"
+        backgroundColor:"white",
+        width:'100%'
     },
     boxContent:{
-        justifyContent:"center", 
-        alignItems:"center",
+        justifyContent:"center",
+        alignItems:"center"
     },
     item:{
         width:"33%", 
