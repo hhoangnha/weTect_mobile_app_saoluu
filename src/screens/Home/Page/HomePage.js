@@ -279,11 +279,12 @@ export default function HomePage({ navigation }){
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    
+    backgroundColor:"#0A3866"
   },
   header:{
     flex:0.1,
-    justifyContent:"center", alignItems:"center",
+    justifyContent:"center", 
+    alignItems:"center",
   },
   image: {
     flex: 1,
